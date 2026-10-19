@@ -222,6 +222,10 @@ footer a{color:var(--muted)}
 .step:hover,.plan:hover,.price-box:hover{transform:translateY(-5px);box-shadow:0 16px 38px rgba(8,47,107,.14)}
 @media (prefers-reduced-motion: reduce){.reveal{opacity:1 !important;translate:none !important;transition:none}}
 @media (scripting: none){.reveal{opacity:1;translate:none}}
+.hero-alt{margin-top:16px;font-size:14.5px;color:#C9DAF0}
+.hero-alt a{color:#7FD4FF;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(127,212,255,.45)}
+.hero-alt a:hover{border-bottom-color:#7FD4FF}
+.agenda-cta{margin-top:20px}
 </style>
 </head>
 <body>
@@ -254,6 +258,7 @@ footer a{color:var(--muted)}
         <a class="btn btn-primary" href="#diagnostico">Agendar diagnóstico gratuito</a>
         <a class="btn btn-ghost on-navy" href="#sustentacao">Ver serviços e preços</a>
       </div>
+      <p class="hero-alt">ou <a href="https://calendar.app.google/wqMAm3pU4dUmwdj59" target="_blank" rel="noopener">agende direto na sua agenda online →</a></p>
       <div class="trust">
         <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6l8-3z"/></svg>Parceiro Kaspersky registrado</span>
         <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Sem fidelidade</span>
@@ -420,6 +425,7 @@ footer a{color:var(--muted)}
         <span>E-mail: <span class="mono">comercial@dc2tech.com.br</span></span>
         <span>Atendimento: segunda a sexta, das 8h às 18h</span>
       </div>
+      <a class="btn btn-ghost on-navy agenda-cta" href="https://calendar.app.google/wqMAm3pU4dUmwdj59" target="_blank" rel="noopener">Agendar na agenda online</a>
     </div>
     <form id="lead" novalidate>
       <div class="f"><label for="nome">Seu nome</label><input id="nome" name="nome" autocomplete="name" required></div>
