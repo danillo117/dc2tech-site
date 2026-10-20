@@ -558,3 +558,18 @@ footer a{color:var(--muted)}
   }
 })();
 </script>
+
+<script>
+/* Eventos de conversão — WhatsApp flutuante e agendamento (GA4 + Meta Pixel quando instalado) */
+(function(){
+  function fire(gEvent, fbEvent){
+    try{ if(window.gtag) gtag('event', gEvent); }catch(_){ }
+    try{ if(window.fbq) fbq('track', fbEvent); }catch(_){ }
+  }
+  var waf = document.getElementById('wafloat');
+  if(waf){ waf.addEventListener('click', function(){ fire('contato_whatsapp','Contact'); }); }
+  [].forEach.call(document.querySelectorAll('a[href*="calendar.app.google"]'), function(a){
+    a.addEventListener('click', function(){ fire('agendamento','Schedule'); });
+  });
+})();
+</script>
