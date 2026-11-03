@@ -243,6 +243,25 @@ footer a{color:var(--muted)}
 </style>
 </head>
 <body>
+<style>
+/* ===== v2 funil: profundidade de fundo, animação de infra, problema/solução ===== */
+.hero{background:radial-gradient(1100px 520px at 80% -10%, #0e3f85 0%, #082f6b 44%, #061f49 100%)}
+.hero .grid-bg{background-image:radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px);background-size:26px 26px;-webkit-mask-image:linear-gradient(180deg,#000,transparent 94%);mask-image:linear-gradient(180deg,#000,transparent 94%)}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(440px 240px at 82% 72%, rgba(8,169,239,.16), transparent 70%);pointer-events:none}
+.heroviz{background:rgba(6,20,45,.45);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:14px 14px 8px;box-shadow:0 24px 60px rgba(0,0,0,.32)}
+.heroviz .hv-cap{display:flex;gap:16px;flex-wrap:wrap;color:#AFC4E2;font-size:12px;padding:6px 6px 2px}
+.heroviz .hv-cap i{font-style:normal;display:inline-flex;align-items:center;gap:6px}
+.heroviz .sw{width:10px;height:10px;border-radius:3px;display:inline-block}
+.heroviz svg{display:block;width:100%;height:auto}
+.hv .lbl{font:600 13px 'Segoe UI',sans-serif;fill:#dbe8fa}.hv .lbl.sm{font-size:11px;fill:#AFC4E2;font-weight:500}
+.solu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:6px}
+@media(max-width:720px){.solu{grid-template-columns:1fr}}
+.solu .it{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.solu .it svg{flex:none;color:var(--cyan);margin-top:2px}
+.solu .it h3{font-size:16px;margin:0 0 4px}.solu .it p{margin:0;color:var(--muted);font-size:14px}
+.plan-sub{color:var(--muted);font-size:13px;margin:2px 0 14px}
+@media(prefers-reduced-motion:reduce){.hv [begin],.hv animateMotion{display:none}}
+</style>
 
 <header class="top">
   <div class="wrap">
@@ -255,7 +274,6 @@ footer a{color:var(--muted)}
       <a href="#protecao">Proteção Kaspersky</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#duvidas">Dúvidas</a>
-      <a href="#artigos">Artigos</a>
       <a href="/diagnostico.html">Teste de risco</a>
       <a class="btn btn-primary" href="#diagnostico">Diagnóstico gratuito</a>
     </nav>
@@ -272,7 +290,7 @@ footer a{color:var(--muted)}
       <p class="lead">A DC2M cuida dos computadores, servidores, rede e segurança da sua empresa. Você sabe quanto vai pagar, quem resolve e o que foi feito.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="#diagnostico">Agendar diagnóstico gratuito</a>
-        <a class="btn btn-ghost on-navy" href="#sustentacao">Ver serviços e preços</a>
+        <a class="btn btn-ghost on-navy" href="#diagnostico">Solicitar cotação</a>
       </div>
       <p class="hero-alt">Não sabe por onde começar? <a href="/diagnostico.html">Faça o teste de risco gratuito em 5 min →</a> · ou <a href="https://calendar.app.google/wqMAm3pU4dUmwdj59" target="_blank" rel="noopener">agende na agenda online</a></p>
       <div class="trust">
@@ -281,17 +299,41 @@ footer a{color:var(--muted)}
         <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>SLA em contrato</span>
       </div>
     </div>
-    <div class="panel reveal" role="img" aria-label="Exemplo de resumo do relatório mensal de um cliente">
-      <div class="panel-head"><span>Relatório mensal · exemplo</span><span>Out/2026</span></div>
-      <div class="panel-title">Escritório com 18 estações e 1 servidor</div>
-      <div class="rows">
-        <div class="row"><span class="dot"></span><span>Estações protegidas</span><b>18 / 18</b></div>
-        <div class="row"><span class="dot"></span><span>Ameaças bloqueadas no mês</span><b>7</b></div>
-        <div class="row"><span class="dot"></span><span>Equipamentos monitorados</span><b>19 · ativos</b></div>
-        <div class="row"><span class="dot w"></span><span>Atualizações pendentes</span><b>3 agendadas</b></div>
-        <div class="row"><span class="dot"></span><span>Chamados resolvidos</span><b>12 · dentro do SLA</b></div>
-      </div>
-      <p class="panel-foot">Valores ilustrativos. Todo cliente recebe esse resumo todo mês.</p>
+    <div class="heroviz reveal hv" role="img" aria-label="Infraestrutura protegida: internet, firewall e LAN com servidor e estações, com proteção propagada">
+      <svg viewBox="0 0 1000 360">
+        <defs>
+          <linearGradient id="hvlink" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2E5A98"/><stop offset="1" stop-color="#1D4A8C"/></linearGradient>
+          <filter id="hvglow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <rect x="648" y="36" width="322" height="288" rx="18" fill="rgba(8,169,239,.05)" stroke="#08A9EF" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="7 7"><animate attributeName="stroke-opacity" values=".25;.75;.25" dur="3s" repeatCount="indefinite"/></rect>
+        <text x="662" y="60" class="lbl sm">LAN PROTEGIDA · DC2M</text>
+        <path id="hpw" d="M150,180 L300,180" stroke="url(#hvlink)" stroke-width="3" fill="none"/>
+        <path id="hpf" d="M372,180 L470,180" stroke="url(#hvlink)" stroke-width="3" fill="none"/>
+        <path id="ha1" d="M548,180 C620,180 660,110 740,100" stroke="url(#hvlink)" stroke-width="2.5" fill="none"/>
+        <path id="ha2" d="M548,180 C620,180 680,175 800,175" stroke="url(#hvlink)" stroke-width="2.5" fill="none"/>
+        <path id="ha3" d="M548,180 C620,180 680,250 800,250" stroke="url(#hvlink)" stroke-width="2.5" fill="none"/>
+        <path id="ha4" d="M548,180 C620,180 660,300 740,300" stroke="url(#hvlink)" stroke-width="2.5" fill="none"/>
+        <g transform="translate(70,180)"><path d="M-36,8 a22,22 0 0,1 6,-43 a28,28 0 0,1 52,-6 a20,20 0 0,1 14,49 z" fill="#0A2350" stroke="#3a6bb0" stroke-width="2"/><circle r="2.2" cx="-10" cy="-6" fill="#8fb4e6"/><circle r="2.2" cx="6" cy="-14" fill="#8fb4e6"/><circle r="2.2" cx="12" cy="2" fill="#8fb4e6"/></g>
+        <text x="70" y="235" text-anchor="middle" class="lbl">Internet (WAN)</text>
+        <g transform="translate(336,180)"><rect x="-26" y="-40" width="52" height="80" rx="6" fill="#0A2350" stroke="#08A9EF" stroke-width="2.5"/><g stroke="#08A9EF" stroke-width="2" opacity=".85"><line x1="-26" y1="-20" x2="26" y2="-20"/><line x1="-26" y1="0" x2="26" y2="0"/><line x1="-26" y1="20" x2="26" y2="20"/><line x1="0" y1="-40" x2="0" y2="-20"/><line x1="-13" y1="-20" x2="-13" y2="0"/><line x1="13" y1="-20" x2="13" y2="0"/><line x1="0" y1="0" x2="0" y2="20"/><line x1="-13" y1="20" x2="-13" y2="40"/><line x1="13" y1="20" x2="13" y2="40"/></g></g>
+        <text x="336" y="245" text-anchor="middle" class="lbl">Firewall</text>
+        <g transform="translate(510,180)"><rect x="-32" y="-16" width="64" height="32" rx="5" fill="#0A2350" stroke="#3a6bb0" stroke-width="2"/><circle cx="-16" r="2.5" fill="#3CCB8F"/><circle cx="-4" r="2.5" fill="#3CCB8F"/><circle cx="8" r="2.5" fill="#3CCB8F"/><circle cx="20" r="2.5" fill="#3CCB8F"/></g>
+        <text x="510" y="212" text-anchor="middle" class="lbl sm">Switch</text>
+        <g transform="translate(820,100)"><rect x="-20" y="-26" width="40" height="52" rx="4" fill="#0A2350" stroke="#4f7cc0" stroke-width="2"/><line x1="-12" y1="-16" x2="12" y2="-16" stroke="#8fb4e6" stroke-width="2"/><line x1="-12" y1="-6" x2="12" y2="-6" stroke="#8fb4e6" stroke-width="2"/><circle cx="-12" cy="8" r="2" fill="#3CCB8F"/><g transform="translate(20,-26)"><circle r="12" fill="#08A9EF" opacity=".18"><animate attributeName="r" values="8;16;8" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;0;.35" dur="2.4s" repeatCount="indefinite"/></circle><path d="M0,-7 l6,2.5 v4 c0,3.6 -2.6,6.6 -6,7.2 -3.4,-.6 -6,-3.6 -6,-7.2 v-4 z" fill="#08A9EF"/></g><text x="0" y="42" text-anchor="middle" class="lbl sm">Servidor</text></g>
+        <g transform="translate(858,175)"><rect x="-22" y="-16" width="44" height="30" rx="3" fill="#0A2350" stroke="#4f7cc0" stroke-width="2"/><rect x="-6" y="14" width="12" height="5" fill="#4f7cc0"/><g transform="translate(22,-16)"><circle r="11" fill="#08A9EF" opacity=".18"><animate attributeName="r" values="7;15;7" dur="2.4s" begin="-0.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;0;.35" dur="2.4s" begin="-0.6s" repeatCount="indefinite"/></circle><path d="M0,-6 l5,2 v3.5 c0,3 -2.2,5.6 -5,6 -2.8,-.4 -5,-3 -5,-6 v-3.5 z" fill="#08A9EF"/></g></g>
+        <g transform="translate(858,250)"><rect x="-22" y="-16" width="44" height="30" rx="3" fill="#0A2350" stroke="#4f7cc0" stroke-width="2"/><rect x="-6" y="14" width="12" height="5" fill="#4f7cc0"/><g transform="translate(22,-16)"><circle r="11" fill="#08A9EF" opacity=".18"><animate attributeName="r" values="7;15;7" dur="2.4s" begin="-1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;0;.35" dur="2.4s" begin="-1.2s" repeatCount="indefinite"/></circle><path d="M0,-6 l5,2 v3.5 c0,3 -2.2,5.6 -5,6 -2.8,-.4 -5,-3 -5,-6 v-3.5 z" fill="#08A9EF"/></g></g>
+        <g transform="translate(820,300)"><rect x="-18" y="-13" width="36" height="24" rx="2" fill="#0A2350" stroke="#4f7cc0" stroke-width="2"/><path d="M-24,13 h48 l-4,5 h-40 z" fill="#0A2350" stroke="#4f7cc0" stroke-width="1.5"/><g transform="translate(18,-13)"><circle r="10" fill="#08A9EF" opacity=".18"><animate attributeName="r" values="6;14;6" dur="2.4s" begin="-1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;0;.35" dur="2.4s" begin="-1.8s" repeatCount="indefinite"/></circle><path d="M0,-6 l5,2 v3.5 c0,3 -2.2,5.6 -5,6 -2.8,-.4 -5,-3 -5,-6 v-3.5 z" fill="#08A9EF"/></g><text x="0" y="34" text-anchor="middle" class="lbl sm">Estações</text></g>
+        <g opacity="0"><g transform="translate(-11,-7)"><rect x="0" y="0" width="22" height="15" rx="2" fill="#2a1016" stroke="#ff6b6b" stroke-width="1.6"/><path d="M1,2 L11,9 L21,2" fill="none" stroke="#ff6b6b" stroke-width="1.6"/></g><animateMotion dur="3s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.62;1" calcMode="linear"><mpath href="#hpw"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.56;.64;1" dur="3s" repeatCount="indefinite"/></g>
+        <g opacity="0"><g transform="translate(-9,-6)"><rect x="0" y="2" width="14" height="8" rx="1.5" fill="#2a1016" stroke="#ff6b6b" stroke-width="1.6"/><rect x="14" y="4" width="5" height="4" fill="#ff6b6b"/><rect x="3" y="4" width="3" height="1.4" fill="#ff6b6b"/></g><animateMotion dur="3s" begin="1.5s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.62;1" calcMode="linear"><mpath href="#hpw"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.56;.64;1" dur="3s" begin="1.5s" repeatCount="indefinite"/></g>
+        <circle cx="306" cy="180" r="4" fill="none" stroke="#ff6b6b" stroke-width="2" opacity="0"><animate attributeName="r" values="2;18" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0;.9;0" keyTimes="0;.55;.63;.8" dur="3s" repeatCount="indefinite"/></circle>
+        <circle cx="306" cy="180" r="4" fill="none" stroke="#ff6b6b" stroke-width="2" opacity="0"><animate attributeName="r" values="2;18" dur="3s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0;.9;0" keyTimes="0;.55;.63;.8" dur="3s" begin="1.5s" repeatCount="indefinite"/></circle>
+        <circle r="3.5" fill="#08A9EF" filter="url(#hvglow)"><animateMotion dur="1.4s" repeatCount="indefinite"><mpath href="#hpf"/></animateMotion></circle>
+        <circle r="3.5" fill="#08A9EF" filter="url(#hvglow)"><animateMotion dur="2s" repeatCount="indefinite"><mpath href="#ha1"/></animateMotion></circle>
+        <circle r="3.5" fill="#08A9EF" filter="url(#hvglow)"><animateMotion dur="2s" begin="-.5s" repeatCount="indefinite"><mpath href="#ha2"/></animateMotion></circle>
+        <circle r="3.5" fill="#08A9EF" filter="url(#hvglow)"><animateMotion dur="2s" begin="-1s" repeatCount="indefinite"><mpath href="#ha3"/></animateMotion></circle>
+        <circle r="3.5" fill="#08A9EF" filter="url(#hvglow)"><animateMotion dur="2s" begin="-1.5s" repeatCount="indefinite"><mpath href="#ha4"/></animateMotion></circle>
+      </svg>
+      <div class="hv-cap"><i><span class="sw" style="background:#ff6b6b"></span> Ameaças (e-mail, USB) barradas no firewall</i><i><span class="sw" style="background:#08A9EF"></span> Proteção propagada para os ativos</i></div>
     </div>
   </div>
 </section>
@@ -314,14 +356,30 @@ footer a{color:var(--muted)}
 <section class="sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <p class="eyebrow">O que costuma dar errado</p>
-      <h2>Sem alguém cuidando da TI, o problema aparece na pior hora.</h2>
+      <p class="eyebrow">O problema</p>
+      <h2>Você não tem certeza se a sua empresa está protegida — e essa dúvida já é o risco.</h2>
     </div>
     <div class="pains">
       <div class="pain reveal"><h3>Ransomware</h3><p>Um clique num boleto falso trava os computadores e pede resgate. A operação para.</p></div>
       <div class="pain reveal"><h3>Backup que não volta</h3><p>A cópia existe, mas ninguém testou. Na hora de restaurar, os arquivos não estão lá.</p></div>
       <div class="pain reveal"><h3>Ninguém para chamar</h3><p>O técnico avulso demora, cobra por visita e não conhece o seu ambiente.</p></div>
       <div class="pain reveal"><h3>LGPD</h3><p>Dados de clientes e pacientes sem proteção expõem a empresa a sanções de até 2% do faturamento.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">A solução</p>
+      <h2>A DC2M protege a sua infraestrutura inteira — e cuida dela todo dia.</h2>
+      <p class="lead">Da borda da rede ao equipamento na mesa: proteção implantada, acompanhada e com alguém responsável. Você deixa de depender da sorte.</p>
+    </div>
+    <div class="solu">
+      <div class="it reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6l8-3z"/></svg><div><h3>Proteção na rede e nos equipamentos</h3><p>Kaspersky corporativo em cada estação e servidor, com bloqueio de phishing, ransomware e USB malicioso.</p></div></div>
+      <div class="it reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2"/><rect x="3" y="7" width="18" height="12" rx="2"/></svg><div><h3>Backup que realmente restaura</h3><p>Não basta ter cópia. Testamos a restauração e mostramos o resultado no relatório.</p></div></div>
+      <div class="it reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><h3>Alguém responsável pela sua TI</h3><p>Suporte N1, N2 e N3 e monitoramento dos equipamentos, com SLA escrito em contrato.</p></div></div>
+      <div class="it reveal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><div><h3>Valor fixo e sem fidelidade</h3><p>Mensalidade previsível por dispositivo, definida na cotação. Cancelamento com aviso de 30 dias.</p></div></div>
     </div>
   </div>
 </section>
@@ -345,17 +403,9 @@ footer a{color:var(--muted)}
         </ul>
       </div>
       <div class="price-box reveal">
-        <div class="cap"><h3>Preço por dispositivo</h3><span>valores mensais</span></div>
-        <div class="tbl-scroll">
-          <table>
-            <thead><tr><th>Dispositivo</th><th class="num">Essencial</th><th class="num">Completa</th></tr></thead>
-            <tbody>
-              <tr><td>Estação (desktop ou notebook)</td><td class="num"><strong>R$ 80</strong></td><td class="num"><strong>R$ 135</strong></td></tr>
-              <tr><td>Servidor</td><td class="num"><strong>R$ 315</strong></td><td class="num"><strong>R$ 420</strong></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="note"><b>Essencial:</b> suporte remoto N1, N2 e N3 sobre os equipamentos, monitoramento, relatório mensal e Kaspersky Foundations. <b>Completa:</b> soma Kaspersky Optimum (EDR), gestão de atualizações e visita técnica mensal no DF.</p>
+        <div class="cap"><h3>Como é cobrado</h3><span>sem letra miúda</span></div>
+        <p class="note" style="padding:16px 18px"><b>Mensalidade fixa por dispositivo</b> (estações e servidores), definida na cotação a partir do que você tem hoje — sem licença anual à vista e sem cobrança por chamado. <b>Planos Essencial e Completa.</b> No diagnóstico gratuito a gente levanta o seu ambiente e fecha o valor.</p>
+        <a class="btn btn-primary" href="#diagnostico" style="margin:0 18px 18px">Solicitar cotação</a>
       </div>
     </div>
   </div>
@@ -371,7 +421,7 @@ footer a{color:var(--muted)}
     <div class="plans">
       <article class="plan reveal">
         <div class="plan-top"><div><h3>Proteção Essencial</h3><p style="color:var(--muted);font-size:14px">Kaspersky Next EDR Foundations</p></div></div>
-        <div class="price"><span class="u">R$</span><span class="v">27,00</span><span class="u">por dispositivo/mês</span></div>
+        <p class="plan-sub">Kaspersky Next EDR Foundations · valor por dispositivo sob cotação</p>
         <ul>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.6" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Antivírus e anti-ransomware com reversão de ações</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.6" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Bloqueio de phishing, sites e anexos maliciosos</li>
@@ -382,7 +432,7 @@ footer a{color:var(--muted)}
       </article>
       <article class="plan feat reveal">
         <div class="plan-top"><div><h3>Proteção EDR</h3><p style="color:var(--muted);font-size:14px">Kaspersky Next EDR Optimum</p></div><span class="tag">Recomendado</span></div>
-        <div class="price"><span class="u">R$</span><span class="v">48,90</span><span class="u">por dispositivo/mês</span></div>
+        <p class="plan-sub">Kaspersky Next EDR Optimum · valor por dispositivo sob cotação</p>
         <ul>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.6" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Tudo da Essencial, mais resposta a ataques em um clique</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.6" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Proteção do e-mail Microsoft 365, OneDrive e Teams</li>
@@ -428,29 +478,6 @@ footer a{color:var(--muted)}
     <div class="segs" aria-label="Segmentos atendidos">
       <span>Clínicas e consultórios</span><span>Escritórios de contabilidade</span><span>Escritórios de advocacia</span><span>Imobiliárias e corretoras</span><span>Comércio e redes de lojas</span><span>Indústrias e distribuidoras</span>
     </div>
-  </div>
-</section>
-
-<section class="sec" id="artigos">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="eyebrow">Conteúdo de segurança</p>
-      <h2>Artigos</h2>
-    </div>
-    <article class="article reveal">
-      <div class="art-meta"><span class="tag">Cibersegurança</span><span>Outubro de 2026</span></div>
-      <h3>Os ataques de hoje não furam o seu antivírus — eles o desligam</h3>
-      <p>Nos ataques de ransomware mais recentes, os criminosos mudaram de estratégia. Em vez de tentar passar pela proteção, eles instalam um <strong>driver assinado</strong> para <strong>desativar a defesa do computador</strong> e, só depois, criptografar tudo. Em um caso reportado pela indústria, ligado ao grupo Cuba ransomware, o ataque só foi contido porque a proteção de endpoint <strong>se recusou a ser desligada</strong> — e as demais camadas pararam a ameaça.</p>
-      <p>Isso muda o que uma empresa precisa ter. Um antivírus comum, que pode ser desativado, não basta. A proteção que segura um ataque assim tem três características:</p>
-      <ul class="art-list">
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Autodefesa (anti-adulteração):</strong> impede que a própria proteção seja desligada, mesmo por quem tem acesso à máquina.</span></li>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><strong>EDR — detecção e resposta:</strong> identifica o comportamento do ataque, não só o “vírus conhecido”, e reage.</span></li>
-        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Monitoramento contínuo:</strong> alguém acompanhando, não um software esquecido no canto.</span></li>
-      </ul>
-      <p>É exatamente essa camada que a <strong>DC2M</strong> entrega com o <strong>Kaspersky Next EDR</strong>, gerenciado de ponta a ponta. Em testes independentes do AV-TEST, a proteção da Kaspersky bloqueou <strong>100% das amostras de ransomware</strong>. Implantamos, monitoramos e enviamos um relatório mensal do que foi protegido.</p>
-      <a class="btn btn-primary art-cta" href="#diagnostico">Fazer diagnóstico gratuito</a>
-      <p class="art-src">Fontes: <a href="https://www.sophos.com/en-us/blog/sophos-endpoint-tamper-protection-thwarts-a-sophisticated-ransomware-attack" target="_blank" rel="noopener">Sophos — proteção anti-adulteração barra ransomware</a> · <a href="https://www.globalsecuritymag.fr/Kaspersky-Endpoint-Security-Cloud,20211006,116829.html" target="_blank" rel="noopener">AV-TEST — Kaspersky bloqueia 100% de ransomware</a>.</p>
-    </article>
   </div>
 </section>
 
